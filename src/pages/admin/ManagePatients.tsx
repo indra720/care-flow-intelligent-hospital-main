@@ -9,10 +9,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardLayout from "@/components/shared/DashboardLayout";
+import { useNavigate } from "react-router-dom";
 
 const ManagePatients = () => {
   const [searchTerm, setSearchTerm] = useState("");
-
+  const navigate = useNavigate()
   const sidebarItems = [
     { icon: Activity, label: "Dashboard", href: "/dashboard/admin", active: false },
     { icon: Users, label: "Manage Patients", href: "/admin/patients", active: true },
@@ -79,7 +80,7 @@ const ManagePatients = () => {
             <h1 className="text-3xl font-bold text-foreground">Manage Patients</h1>
             <p className="text-muted-foreground">View and manage patient records</p>
           </div>
-          <Button className="bg-gradient-primary hover:opacity-90">
+          <Button className="bg-gradient-primary hover:opacity-90" onClick={()=>navigate('/admin/registerPatient')}>
             <Plus className="w-4 h-4 mr-2" />
             Register New Patient
           </Button>

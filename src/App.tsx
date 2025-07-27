@@ -19,6 +19,8 @@ import FeedbackComplaints from "./pages/admin/FeedbackComplaints";
 import AIReportsInsights from "./pages/admin/AIReportsInsights";
 import SystemSettings from "./pages/admin/SystemSettings";
 import Reports from "./pages/admin/Reports";
+import AddDoctor from "./pages/admin/AddDoctor.tsx";
+import RegisterPatient from "./pages/admin/RegisterPatient.tsx";
 
 // Doctor Pages
 import DoctorAppointments from "./pages/doctor/Appointments";
@@ -41,6 +43,8 @@ import PatientMessages from "./pages/patient/Messages";
 
 // Pharmacy Pages
 import PharmacyInventory from "./pages/pharmacy/Inventory";
+
+
 
 const queryClient = new QueryClient();
 
@@ -65,6 +69,8 @@ const App = () => (
           <Route path="/admin/ai-reports" element={<AIReportsInsights />} />
           <Route path="/admin/settings" element={<SystemSettings />} />
           <Route path="/admin/reports" element={<Reports />} />
+          <Route path="/admin/addDoctor" element={<AddDoctor/>}/>
+          <Route path="/admin/registerPatient" element={<RegisterPatient/>} />
           
           {/* Doctor Routes */}
           <Route path="/doctor/appointments" element={<DoctorAppointments />} />
