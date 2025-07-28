@@ -9,11 +9,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardLayout from "@/components/shared/DashboardLayout";
-import { useNavigate } from "react-router-dom";
+import RegisterPatient from "./RegisterPatient";
+
+// import { useNavigate } from "react-router-dom";
 
 const ManagePatients = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const sidebarItems = [
     { icon: Activity, label: "Dashboard", href: "/dashboard/admin", active: false },
     { icon: Users, label: "Manage Patients", href: "/admin/patients", active: true },
@@ -66,7 +68,19 @@ const ManagePatients = () => {
     patient.condition.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+
+
+  //  pop register form
+
+  const [showform,setshowform]=useState(false);
+
+  const handlecloseform = ()=>{
+    setshowform(false)
+  };
+  
+
   return (
+    <>
     <DashboardLayout
       title="Manage Patients"
       role="admin"
@@ -80,7 +94,7 @@ const ManagePatients = () => {
             <h1 className="text-3xl font-bold text-foreground">Manage Patients</h1>
             <p className="text-muted-foreground">View and manage patient records</p>
           </div>
-          <Button className="bg-gradient-primary hover:opacity-90" onClick={()=>navigate('/admin/registerPatient')}>
+          <Button onClick={()=>setshowform(true)}  className="bg-gradient-primary hover:opacity-90" >
             <Plus className="w-4 h-4 mr-2" />
             Register New Patient
           </Button>
@@ -369,7 +383,25 @@ const ManagePatients = () => {
         </Card>
       </div>
     </DashboardLayout>
+    {showform && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto relative">
+            <button
+              onClick={handlecloseform}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+            >
+              ✖
+            </button>
+            <RegisterPatient onClose={handlecloseform} />
+          </div>
+        </div>
+      )}
+
+
+
+    </>
   );
 };
 
 export default ManagePatients;
+

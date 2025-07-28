@@ -9,13 +9,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardLayout from "@/components/shared/DashboardLayout";
-import { useNavigate } from "react-router-dom";
+import AddDoctor from "./AddDoctor";
+
 
 const ManageDoctors = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("list");
   
-   const navigate = useNavigate();
+
   const sidebarItems = [
     { icon: TrendingUp, label: "Dashboard", href: "/dashboard/admin", active: false },
     { icon: Award, label: "Manage Doctors", href: "/admin/doctors", active: true },
@@ -64,8 +65,18 @@ const ManageDoctors = () => {
     doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
+
+  //  add new doctor pop form
+
+  const [showform,setshowform]=useState(false)
+
+  const handlecloseform=()=>{
+    setshowform(false)
+  }
 
   return (
+   <>
     <DashboardLayout
       title="Manage Doctors"
       role="admin"
@@ -79,7 +90,7 @@ const ManageDoctors = () => {
             <h1 className="text-3xl font-bold text-foreground">Manage Doctors</h1>
             <p className="text-muted-foreground">Add, edit, and manage doctor profiles</p>
           </div>
-          <Button className="bg-gradient-primary hover:opacity-90" onClick={()=>(navigate("/admin/addDoctor"))}>
+          <Button onClick={()=>setshowform(true)} className="bg-gradient-primary hover:opacity-90" >
             <Plus className="w-4 h-4 mr-2" />
             Add New Doctor
           </Button>
@@ -328,6 +339,20 @@ const ManageDoctors = () => {
         </Card>
       </div>
     </DashboardLayout>
+    {showform && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto relative">
+            <button
+              onClick={handlecloseform}
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+            >
+              ✖
+            </button>
+            <AddDoctor onClose={handlecloseform} />
+          </div>
+        </div>
+      )}
+   </>
   );
 };
 

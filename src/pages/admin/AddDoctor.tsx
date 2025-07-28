@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const AddDoctor = () => {
+const AddDoctor = ({onClose}) => {
 
   const [formdata,setformdata]=useState({
     name:"",
@@ -25,15 +25,17 @@ const validate = () => {
   const newErrors = {};
 
   if (!formdata.name.trim()) {
-    newErrors.name = "Name is required";
-  }
+  newErrors.name = "Name is required";
+} else if (!/^[a-zA-Z\s]+$/.test(formdata.name)) {
+  newErrors.name = "Only alphabets are allowed";
+}
   if (!formdata.email.trim()) {
     newErrors.email = "Email is required";
   } else if (!/\S+@\S+\.\S+/.test(formdata.email)) {
     newErrors.email = "Email is invalid";
   }
   if (!formdata.specialty.trim()) {
-    newErrors.specialty = "Specialty is required"; // ✅ Fixed spelling
+    newErrors.specialty = "Specialty is required"; 
   }
   if (!formdata.Patients.trim()) {
     newErrors.Patients = "Patients is required";
@@ -66,11 +68,15 @@ const validate = () => {
         Rating: "",
         status: ""
       })
+      onClose()
     }
   };
   return ( 
-    <div className='mx-10'>
-      <form action="" onSubmit={handlesubmit} className=' border border-gray-500 m-5 p-5 rounded-lg w-full md:w-1/2  mx-auto '>
+   <div className='bg-blue-300 w-full p-4'>
+     <div className='mx-10'>
+      <fieldset className='p-5 border-2 border-gray-300 bg-white rounded-md w-full lg:w-full mx-auto'>
+        <legend className='text-center font-bold'>Add New Doctor</legend>
+        <form action="" onSubmit={handlesubmit} className=' '>
         <div className='grid grid-cols-1 '>
           <label htmlFor="name" className=' font-semibold italic my-1'>Name</label>
           <input required type="text" value={formdata.name} onChange={handleChange} name="name"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'/>
@@ -118,7 +124,9 @@ const validate = () => {
         </div>
         <button  className='border font-bold my-5 p-3 rounded-md bg-blue-500 text-white hover:bg-transparent hover:border-blue-500 hover:shadow-md hover:text-black' type='submit'>Submit</button>
       </form>
+      </fieldset>
     </div>
+   </div>
   )
 }
 
