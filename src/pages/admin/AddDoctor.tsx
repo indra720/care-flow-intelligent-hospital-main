@@ -72,22 +72,22 @@ const validate = () => {
     }
   };
   return ( 
-   <div className='bg-blue-300 w-full p-4'>
-     <div className='mx-10'>
-      <fieldset className='p-5 border-2 border-gray-300 bg-white rounded-md w-full lg:w-full mx-auto'>
-        <legend className='text-center font-bold'>Add New Doctor</legend>
+   <>
+     <div className=' w-90  overflow-hidden  mx-auto'>
+      <fieldset className='p-5 bg-transparent rounded-md  mx-auto'>
+        <legend className='text-center  font-bold py-1'>Add New Doctor</legend>
         <form action="" onSubmit={handlesubmit} className=' '>
         <div className='grid grid-cols-1 '>
-          <label htmlFor="name" className=' font-semibold italic my-1'>Name</label>
-          <input required type="text" value={formdata.name} onChange={handleChange} name="name"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'/>
+          <label htmlFor="name" className=' font-semibold  my-1'>Name</label>
+          <input required type="text" value={formdata.name} onChange={handleChange} name="name"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400    my-1'/>
           {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
           
-          <label htmlFor="email" className=' font-semibold italic my-1'>Email</label>
-          <input required type="email" value={formdata.email} onChange={handleChange} name="email"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'/>
+          <label htmlFor="email" className=' font-semibold  my-1'>Email</label>
+          <input required type="email" value={formdata.email} onChange={handleChange} name="email"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400   my-1'/>
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           
-          <label htmlFor="specialty" className=' font-semibold italic my-1'>Specialty</label>
-          <select required value={formdata.specialty} onChange={handleChange} name="specialty"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'>
+          <label htmlFor="specialty" className=' font-semibold  my-1'>Specialty</label>
+          <select required value={formdata.specialty} onChange={handleChange} name="specialty"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400   my-1'>
             <option value="">Select Specialty</option>
             <option value="Cardiology">Cardiology</option>
             <option value="Neurology">Neurology</option>
@@ -98,12 +98,12 @@ const validate = () => {
           </select>
           {errors.specialty && <p className="text-red-500 text-sm">{errors.specialty}</p>}
           
-          <label htmlFor="Patients" className=' font-semibold italic my-1'>Patients</label>
-          <input required type="text" value={formdata.Patients} onChange={handleChange} name="Patients"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'/>
+          <label htmlFor="Patients" className=' font-semibold  my-1'>Patients</label>
+          <input required type="text" value={formdata.Patients} onChange={handleChange} name="Patients"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400  my-1'/>
           {errors.Patients && <p className="text-red-500 text-sm">{errors.Patients}</p>}
           
-          <label htmlFor="Rating" className=' font-semibold italic my-1'>Rating</label>
-          <select required  value={formdata.Rating} onChange={handleChange} name="Rating"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'>
+          <label htmlFor="Rating" className=' font-semibold  my-1'>Rating</label>
+          <select required  value={formdata.Rating} onChange={handleChange} name="Rating"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400  my-1'>
             <option value="">Select Rating</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -113,8 +113,8 @@ const validate = () => {
           </select>
           {errors.Rating && <p className="text-red-500 text-sm">{errors.Rating}</p>}
           
-          <label htmlFor="status" className=' font-semibold italic'>Status</label>
-          <select required  value={formdata.status} onChange={handleChange} name="status"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300'>
+          <label htmlFor="status" className=' font-semibold '>Status</label>
+          <select required  value={formdata.status} onChange={handleChange} name="status"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400'>
             <option value="">Select Status</option>
             <option value="Active">Active</option>
             <option value="On Leave">On Leave</option>
@@ -122,11 +122,13 @@ const validate = () => {
           {errors.status && <p className="text-red-500 text-sm">{errors.status}</p>}
 
         </div>
-        <button  className='border font-bold my-5 p-3 rounded-md bg-blue-500 text-white hover:bg-transparent hover:border-blue-500 hover:shadow-md hover:text-black' type='submit'>Submit</button>
+       <div className='flex justify-center pt-2'>
+         <button  className='border font-bold my-5 p-3 rounded-md bg-blue-500 text-white     hover:shadow-md w-full ' type='submit'>Add Doctor</button>
+       </div>
       </form>
       </fieldset>
     </div>
-   </div>
+   </>
   )
 }
 

@@ -10,6 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardLayout from "@/components/shared/DashboardLayout";
 import AddDoctor from "./AddDoctor";
+import { IoCloseOutline } from "react-icons/io5";
 
 
 const ManageDoctors = () => {
@@ -340,13 +341,13 @@ const ManageDoctors = () => {
       </div>
     </DashboardLayout>
     {showform && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto relative">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 ">
+          <div className="bg-white rounded-lg shadow-lg p-3 w-[450px]   relative sm:h-[calc(100%-20px)]">
             <button
               onClick={handlecloseform}
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+              className="absolute  top-2 right-2 text-2xl "
             >
-              ✖
+              <IoCloseOutline />
             </button>
             <AddDoctor onClose={handlecloseform} />
           </div>

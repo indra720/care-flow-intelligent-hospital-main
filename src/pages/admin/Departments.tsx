@@ -44,7 +44,7 @@ const Departments = () => {
     {
       id: "2",
       name: "Emergency",
-      head: "Dr. Sarah Wilson",
+      head: "Dr.Sarah Wilson",
       staff: 28,
       location: "Building A, Floor 1",
       beds: 40,

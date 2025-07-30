@@ -10,6 +10,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardLayout from "@/components/shared/DashboardLayout";
 import RegisterPatient from "./RegisterPatient";
+import { IoCloseOutline } from "react-icons/io5";
 
 // import { useNavigate } from "react-router-dom";
 
@@ -384,13 +385,14 @@ const ManagePatients = () => {
       </div>
     </DashboardLayout>
     {showform && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl max-h-screen overflow-y-auto relative">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 ">
+          <div className="bg-white rounded-lg shadow-lg p-3 w-[450px]   relative h-[750px] h-screen md:h-[calc(100%-25px)] ">
             <button
               onClick={handlecloseform}
-              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+              className="absolute text-2xl top-2 right-2 "
             >
-              ✖
+              
+              <IoCloseOutline/>
             </button>
             <RegisterPatient onClose={handlecloseform} />
           </div>

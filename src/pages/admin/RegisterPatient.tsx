@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPatient = ({onClose}) => {
@@ -11,6 +11,7 @@ const RegisterPatient = ({onClose}) => {
         date: "",
         condition: "",
         gender:"",
+        status:"",
       })
   
   const [errors, setErrors] = useState({});
@@ -20,6 +21,17 @@ const RegisterPatient = ({onClose}) => {
     setformdata({
       ...formdata,[name]:value
     })
+  }
+ 
+  
+  // date picker anywhere click on input
+
+  const customDateInput = ()=>{
+    const inputref = useRef(null);
+
+     const habdledivclick=()=>{
+    inputref.current.showPicker();
+  }
   }
            
 
@@ -48,6 +60,9 @@ const validate = () => {
   if (!formdata.condition.trim()) {
     newErrors.condition = "condition is required";
   }
+  if (!formdata.status.trim()) {
+    newErrors.status = "Status is required";
+  }
 
   return newErrors;
 };
@@ -70,7 +85,8 @@ const navigate = useNavigate()
         bloodtype: "",
         date: "",
         condition: "",
-        gender:""
+        gender:"",
+        status:""
       })
      onClose()
     }
@@ -78,21 +94,21 @@ const navigate = useNavigate()
     
   };
   return ( 
-   <div  className='bg-blue-300 w-full p-4'>
-    <div className='mx-10 '>
-    <fieldset className=' p-5 border-2 border-gray-300 bg-white rounded-md w-full lg:w-full mx-auto' >
-      <legend className="text-2  text-center font-semibold text-blue-600 px-2">Add Doctor</legend>
+   <>
+    <div className='w-90  overflow-hidden sm:min-h-screen  mx-auto'>
+    <fieldset className=' px-5 bg-transparent rounded-md  mx-auto' >
+      <legend className="text-center  font-bold py-1">Register New Patient</legend>
 
     
       <form action="" onSubmit={handlesubmit} >
-        <div className='grid grid-cols-1 '>
-          <label htmlFor="name" className=' font-semibold italic my-1'>Name</label>
-          <input required type="text" value={formdata.name} onChange={handleChange} name="name"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'/>
+        <div className='grid grid-cols-1  sm:gap-2 lg:gap-1'>
+          <label htmlFor="name" className=' font-semibold  my-'>Name</label>
+          <input required type="text" value={formdata.name} onChange={handleChange} name="name"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400  '/>
           {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
           
          <div className='flex flex-col'>
-           <label htmlFor="number" className=' font-semibold italic my-1'>Age/Gender</label>
-          <input required type="number" value={formdata.number} min={1} onChange={handleChange} name="number"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'/>
+           <label htmlFor="number" className=' font-semibold  my-'>Age/Gender</label>
+          <input required type="number" value={formdata.number} min={1} onChange={handleChange} name="number"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400  '/>
 
           {errors.number && <p className="text-red-500 text-sm">{errors.number}</p>}
 
@@ -104,12 +120,12 @@ const navigate = useNavigate()
           </div>
          </div>
 
-          <label htmlFor="email" className=' font-semibold italic my-1'>Email</label>
-          <input required type="email" value={formdata.email} onChange={handleChange} name="email"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'/>
+          <label htmlFor="email" className=' font-semibold  my-'>Email</label>
+          <input required type="email" value={formdata.email} onChange={handleChange} name="email"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400  '/>
           {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           
-          <label htmlFor="bloodtype" className=' font-semibold italic my-1'>Blood Type</label>
-          <select required value={formdata.bloodtype} onChange={handleChange} name="bloodtype"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'>
+          <label htmlFor="bloodtype" className=' font-semibold  my-'>Blood Type</label>
+          <select required value={formdata.bloodtype} onChange={handleChange} name="bloodtype"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400  '>
             <option value="">Select Blood Type</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -121,30 +137,51 @@ const navigate = useNavigate()
           </select>
           {errors.bloodtype && <p className="text-red-500 text-sm">{errors.bloodtype}</p>}
 
-          <label htmlFor="date" className=' font-semibold italic my-1'>Last Visit</label>
-          <input required type="date" value={formdata.date} onChange={handleChange} name="date"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'/>
+          <label htmlFor="date" className=' font-semibold  my-'>Last Visit</label>
+          <input required type="date" min={new Date().toISOString().split("T")[0]} value={formdata.date} onChange={handleChange} name="date"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-400  '/>
           {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
 
 
-          <label htmlFor="condition" className=' font-semibold italic my-1'>Conditions</label>
-          <select required value={formdata.condition} onChange={handleChange} name="condition"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 my-1'>
+          <label htmlFor="condition" className=' font-semibold  my-'>Conditions</label>
+          <select required value={formdata.condition} onChange={handleChange} name="condition"  className='outline-0 border border-gray p-2 rounded-sm hover:border-blue-300 '>
             <option value="">Select Conditions</option>
             <option value="Hypertension">Hypertension</option>
             <option value="Diabetes">Diabetes</option>
             <option value="Healthy">Healthy</option>
           </select>
 
+          <label htmlFor="status" className=' font-semibold my-'>Status</label>
+          <select required  value={formdata.status} onChange={handleChange} name="status"  className='outline-0 border-2 border-gray p-2 rounded-sm hover:border-blue-40 0'>
+            <option value="">Select Status</option>
+            <option value="Active">Active</option>
+            <option value="On Leave">Inactive</option>
+          </select>
+          {errors.status && <p className="text-red-500 text-sm">{errors.status}</p>}
+
 
         </div>
-        <button  className='border font-bold my-5 p-3 rounded-md bg-blue-500 text-white hover:bg-transparent hover:border-blue-500 hover:shadow-md hover:text-black' type='submit'>Submit</button>
+        <div className='flex justify-center '>
+         <button  className='border font-bold my-5 p-3 rounded-md bg-blue-500 text-white     hover:shadow-md w-full ' type='submit'>Register Patient</button>
+       </div>
       </form>
     
     </fieldset>
     </div>
     
 
-   </div>
+   </>
   )
 }
 
 export default RegisterPatient;
+
+
+
+
+
+
+
+
+
+
+
